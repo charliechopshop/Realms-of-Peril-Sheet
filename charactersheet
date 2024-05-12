@@ -1,0 +1,261 @@
+<main>
+  <!--LOGO TOP LEFT... *Note: Would love for this entire section to be centered in it's cell-->
+    <section class="headerleft">
+      <img src="https://i.imgur.com/A6SIxI5.png" width="250" > 
+      <br>
+      <span> Player Name:</span><input name="attr_playername" type="text"/>
+    </section>
+  
+    <!--HEADER RIGHT - PLAYER NAME, LEVEL ETC-->
+    <section class="headerright">
+      <label> <br> Character Name:<input name="attr_character_name" type="text"></label>
+        <section class="levelinfo">
+              <span>LVL:</span><input name="attr_level" type="number" value="0"/>
+              <span> XP:</span><input name="attr_XP" type="number" value="0"/> <span>RANKS:</span><input name="attr_classranks" type="text"/>
+          </section>
+    </section>
+  
+    <!-- VITALS AND HISTORY SECTION (RIGHT MIDDLE)... *Note: Would like to split vitals and history into two separate sections-->
+  
+    <section class="common">
+      <h3>VITALS</h3>
+     <section class="hpline">
+      <span>HP:</span> <input type="number" name="attr_hp" value="0"> / <input type="number" name="attr_hp_max" value="0">
+      &nbsp &nbsp
+      <span>AR:</span> <input type="number" name="attr_ar" value="0"> <span>Max Heavy:</span> <input type="number" name="attr_max_heavy" value="0">
+      <label>Conditions: <br> <input type="text" name="attr_conditions"> </label>
+      <hr>
+      <h3 class="history">HISTORY</h3>
+      <label>Kin: <br> <input type="text" name="attr_kin"> </label>
+     <label>Background: <br> <input name="attr_background" type="text" ></label>
+     <br>
+     <br>
+     </section>
+    </section>
+  
+    <!--ATTACKS AND ABILITIES (LEFT CENTER_... Would like to split Attacks and Abilites into two sections. Attack Roll line is messy and needs to be put into a nice neat row. Would like checkbox for ability check fail to be next to ability on the right instead of underneath. -->
+  
+    <section class="skill f-col nowrap">
+      <h3>ATTACKS</h3>
+       <div class="f-row nowrap">
+            <label>Weapon 1</label> <input type="text" name="attr_weapon1name"> 
+            <label>D20+</label>
+                   <select name="attr_weapon1_ability">
+                       <option value="@{str_mod}">STR</option>
+                       <option value="@{agi_mod}">AGI</option>
+                       <option value="@{per_mod}">PER</option>
+                  </select>
+          <button type="roll" name="roll_agi" value="&{template:rolls} {{title=@{weapon1name} Attack}} {{subtitle=@{character_name}}} {{Attack Roll=[[d20+@{weapon1_ability}+?{Modifier?|0}]]}} {{Damage=[[ @{weapon1_damage}+@{weapon1_ability}]]}}"> </button>
+        </div>
+          
+        <div class="f-row nowrap">
+          <section class="weapon1-dmg">
+          <span>Weapon 1 Damage</span>
+                 <select name="attr_weapon1_damage">
+                     <option value="1d4">1d4</option>
+                     <option value="1d6">1d6</option>
+                     <option value="1d8">1d8</option>
+                     <option value="1d10">1d10</option>
+                     <option value="1d12">1d12</option>
+                </select>
+          </section>
+        <button type="roll" name="roll_weapon1_damage" value="&{template:rolls} {{title=@{weapon1name} Damage}} {{subtitle=@{character_name}}} {{Damage=[[@{weapon1_damage}+@{weapon1_ability}]]}}"> </button>
+      </div>
+      <br>
+          <div class="f-row nowrap">
+              <label>Weapon 2</label>
+              <input type="text" name="attr_weapon2name"> 
+                    <label>D20+</label>
+                           <select name="attr_weapon2_ability">
+                                  <option value="@{str_mod}">STR</option>
+                                  <option value="@{agi_mod}">AGI</option>
+                                  <option value="@{per_mod}">PER</option>
+                           </select>
+    <button type="roll" name="roll_weapon2_damage" value="&{template:rolls} {{title=@{weapon2name} Attack}} {{subtitle=@{character_name}}} {{Attack Roll=[[d20+@{weapon2_ability}+?{Modifier?|0}]]}} {{Damage=[[ @{weapon2_damage}+@{weapon2_ability} ]]}}"> </button>
+  </div>
+  
+  <div class="f-rowleft nowrap">
+    <section class="weapon2-dmg">
+    <span>Weapon 2 Damage</span>
+           <select name="attr_weapon2_damage">
+               <option value="1d4">1d4</option>
+               <option value="1d6">1d6</option>
+               <option value="1d8">1d8</option>
+               <option value="1d10">1d10</option>
+               <option value="1d12">1d12</option>
+          </select>
+    </section>
+  <button type="roll" name="roll_weapon2_damage" value="&{template:rolls} {{title=@{weapon2name} Damage}} {{subtitle=@{character_name}}} {{Damage=[[@{weapon2_damage}+@{weapon2_ability}]]}}"> </button>
+  </div>
+  <br>
+      <h3>ABILITIES</h3>
+      <section class="abilities">
+      <div class="f-row nowrap">
+        <label>AGI
+        <input type="number" name="attr_agi" value="0">
+        <span>rating</span>
+        <input type="number" name="attr_agi_mod" value="0">
+        <button type="roll" name="roll_agi" value="&{template:rolls} {{title=Agility Check}} {{subtitle=@{character_name}}} {{roll=[[d20+@{agi_mod}+?{Modifier?|0}]]}}"> </button>
+        <br>
+        <span>AGI fail</span> <input type="checkbox" value="AGI Fail" name="attr_agi_fail"> 
+      </label>
+      </div>
+      <div class="f-row nowrap">
+        <label>CHA
+        <input type="number" name="attr_cha" value="0">
+        <span>rating</span>
+        <input type="number" name="attr_cha_mod" value="0">
+        <button type="roll" name="roll_cha" value="&{template:rolls} {{title=Charisma Check}} {{subtitle=@{character_name} }} {{roll= [[d20+@{cha_mod}+?{Modifier?|0} ]]}}"> </button>
+        <br>
+        <span>CHA fail</span> <input type="checkbox" value="CHA Fail" name="attr_cha_fail">
+      </label>
+      </div>
+      <div class="f-row nowrap">
+        <label>INT
+        <input type="number" name="attr_int" value="0">
+        <span>rating</span>
+        <input type="number" name="attr_int_mod" value="0">
+        <button type="roll" name="roll_int" value="&{template:rolls} {{title=Intellect Check}} {{subtitle=@{character_name} }} {{roll= [[d20+@{int_mod}+?{Modifier?|0} ]]}}"> </button>
+        <br>
+        <span>INT fail</span> <input type="checkbox" value="INT Fail" name="attr_int_fail">
+      </label>
+      </div>
+      <div class="f-row nowrap">
+          <label>PER
+          <input type="number" name="attr_per" value="0">
+          <span>rating</span>
+        <input type="number" name="attr_per_mod" value="0">
+          <button type="roll" name="roll_per" value="&{template:rolls} {{title=Perception Check}} {{subtitle=@{character_name} }} {{roll= [[d20+@{per_mod}+?{Modifier?|0} ]]}}"> </button>
+          <br>
+          <span>PER fail</span> <input type="checkbox" value="PER Fail" name="attr_per_fail">
+        </label>
+       </div>
+        <div class="f-row">
+          <label>STR
+          <input type="number" name="attr_str" value="0">
+          <span>rating</span>
+        <input type="number" name="attr_str_mod" value="0">
+          <button type="roll" name="roll_str" value="&{template:rolls} {{title=Strength Check}} {{subtitle=@{character_name} }} {{roll= [[d20+@{str_mod}+?{Modifier?|0} ]]}}"> </button>
+          <br>
+        <span>STR fail</span> <input type="checkbox" value="STR Fail" name="attr_str_fail">
+        </label>
+      </div>
+      <br>
+      </section>
+    </section>
+  
+    <!--POCKETS (power=pocket)-->
+  
+    <section class="power f-col">
+      <h3>POCKET</h3>
+      <fieldset class="repeating_pocket">
+          <input name="attr_pocket" type="text" width="stretch">
+      </fieldset>
+    </section>
+  
+    <!--APPAREL-->
+    <section class="apparel f-col">
+      <h3>APPAREL</h3>
+      <section class="armor">
+      <span> Armor</span><input name="attr_armor" type="text" ><span>hvy </span><input type="checkbox" name="attr_hvy1" value="vhvy1"> <span>| v hvy</span><input type="checkbox" name="attr_vhvy0" value="vhvy0">
+      </section>
+      <section class="other_apparel" >
+      <fieldset class="repeating_apparel">
+          
+          <input name="attr_apparel" type="text" >
+      </fieldset>
+  </section>
+    </section>
+    
+     <!--EQUIPMENT... *Note: Would like more padding in the cell beneath bottom-most backpack input-->
+  
+    <section class="inv">
+      <h3>EQUIPMENT</h3>
+     <input type="text" name="attr_equipment1"> <span>hvy </span><input type="checkbox" name="attr_eq_hvy1" value="vhvy1"> <span>| v hvy</span><input type="checkbox" name="attr_vhvy1" value="vhvy1">
+     <input type="text" name="attr_equipment2"> <span>hvy </span><input type="checkbox" name="attr_eq_hvy2" value="vhvy2"> <span>| v hvy</span><input type="checkbox" name="attr_vhvy2" value="vhvy2">
+     <input type="text" name="attr_equipment3"> <span>hvy </span><input type="checkbox" name="attr_eq_hvy3" value="vhvy3"> <span>| v hvy</span><input type="checkbox" name="attr_vhvy3" value="vhvy3">
+     <input type="text" name="attr_equipment4"> <span>hvy </span><input type="checkbox" name="attr_eq_hvy4" value="vhvy4"> <span>| v hvy</span><input type="checkbox" name="attr_vhvy4" value="vhvy4">
+     <input type="text" name="attr_equipment5"> <span>hvy </span><input type="checkbox" name="attr_eq_hvy5" value="vhvy5"> <span>| v hvy</span><input type="checkbox" name="attr_vhvy5" value="vhvy5">
+     <input type="text" name="attr_equipment6"> <span>hvy </span><input type="checkbox" name="attr_eq_hvy6" value="vhvy6"> <span>| v hvy</span><input type="checkbox" name="attr_vhvy6" value="vhvy6">
+    </section>
+    
+   <!--TALENTS AND SPELLS... *Note: These text areas can be adjusted horizontally... they should only be able to be stretched vertically.
+    Would like to add a Talent/Spell Name input just to the left of each text area, when rolled this name could be used in the roll template as a title-->
+  
+   <section class="tns">
+    <h3>TALENTS AND SPELLS</h3>
+    <fieldset class="repeating_talents">
+      <textarea name="attr_tns"></textarea> 
+      <button type="roll" name="roll_talent" value="&{template:rolls} {{title=Talents and Spells}} {{subtitle=@{character_name}}} {{desc=@{tns}}}"> </button>
+    </fieldset>
+  </section>
+  
+     <!--CONTAINER 1... *Note: Add supply dice section to the right of each input with a roll button. Can choose supply dice size from a drop down then roll it with the button-->
+  
+     <section class="cont1">
+      <h3><input type=text name="attr_container1_name" value="Container Name"></h3>
+      <fieldset class="repeating_container1">
+          <input name="attr_cont1" type="text" width="stretch"><span>hvy </span><input type="checkbox" name="attr_conthvy" value="cont1hvy">
+      </fieldset>
+    </section>
+  
+    <!--CONTAINER 2... *Note: Add supply dice section to the right of each input with a roll button. Can choose supply dice size from a drop down then roll it with the button-->
+  
+    <section class="cont2">
+      <h3><input type=text name="attr_container2_name" value="Container Name"></h3>
+      <fieldset class="repeating_container2">
+          <input name="attr_cont2" type="text" width="stretch"><span>hvy </span><input type="checkbox" name="attr_cont2hvy" value="cont2hvy">
+      </fieldset>
+    </section>
+  
+    <!--STASH... *Note: Add a second page to the sheet with tabs. Move this section to the 2nd tab.-->
+  
+    <section class="stash">
+      <h3>STASH</h3>
+          <textarea name="attr_stash" width="stretch">
+    </section>
+  
+    <!--NOTES... *Note: Add a second page to the sheet with tabs. Move this section to the 2nd tab.-->
+  
+    <section class="notes">
+      <h3>NOTES</h3>
+      <fieldset class="repeating_notes">
+          <textarea name="attr_notes" width="stretch">
+      </fieldset>
+    </section>
+  
+    <footer class="f-col f-center">
+      <span>Made by Charlie Queen</span>
+    </footer>
+  </main>
+  
+  <!-- SHEET NOTE: Add a second tab to the sheet. Move the NOTES and STASH sections to the second tape. 
+    Build two new sections for this 2nd tabe (FOLLOWERS and HOLDINGS).-->
+  
+  <!-- Datalists & thing that don't show directly on sheet -->
+  
+  <datalist id="Kin">
+      <option value="Human">Human</option>
+      <option value="Dwarf">Dwarf</option>
+      <option value="Elf">Elf</option>
+      <option value="Halfling">Halfling </option>
+  </datalist>
+  
+  <!-- roll template -->
+  
+  <rolltemplate class="sheet-rolltemplate-rolls">
+    <div class="sheet-container">
+      <div class="sheet-header">
+        {{#title}}<div class="sheet-title">{{title}}</div>{{/title}}
+        {{#name}}<div class="sheet-name">{{name}}</div>{{/name}}
+        {{#subtitle}}<div class="sheet-subtitle">{{subtitle}}</div>{{/subtitle}}
+      </div>
+      <div class="sheet-content">
+        {{#allprops() title name subtitle desc}}
+        <div class="sheet-key">{{key}}</div>
+        <div class="sheet-value">{{value}}</div>
+        {{/allprops() title name subtitle desc}}
+        {{#desc}}<div class="sheet-desc">{{desc}}</div>{{/desc}}
+      </div>
+    </div>
+  </rolltemplate>
