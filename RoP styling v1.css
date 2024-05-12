@@ -1,0 +1,479 @@
+
+/*----------------- Main Layout ------------------*/
+
+main {
+  display: grid;
+  width: 800px;
+  height: 900px;
+  grid-gap: 6px;
+  grid-template-columns: 160px 1fr 1fr 1fr;
+  grid-template-rows: 110px 1fr 1fr 1fr 1fr 1fr 1fr 1fr 30px;
+  grid-template-areas:"headerleft headerleft  headerright  headerright"
+                      "skill  skill  common  common"
+                      "skill  skill  equipment  equipment"
+                      "tns  tns  tns  tns"
+                      "pocket  pocket  apparel  apparel"
+                      "container1  container1  container2  container2"
+                      "stash  stash  stash  stash"
+                      "notes  notes  notes  notes"
+                      "footer footer  footer  footer";
+}
+
+
+
+/*----------------- GENERAL CSS ------------------*/
+
+.section {
+    padding: 3px;
+
+}
+
+/* CSS Flexbox styling, used for adjusting how content inside section behaves */
+.f-col {
+  display: flex;
+  flex-direction: column;
+}
+.f-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.f-rowleft {
+  display: flex;
+  flex-direction: row;
+}
+
+.wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+.nowrap {
+  display: flex;
+  flex-wrap: nowrap;
+}
+.f-center {
+  align-items: center;
+  justify-content: center;
+}
+
+.f-start {
+  
+  justify-content: left
+}
+
+
+/*----------------- Text & Input styling -----------------*/
+
+
+@import url('https://fonts.googleapis.com/css?family=Sigmar+One&display=swap');
+
+
+/* these are for overwriting default CSS that comes from Roll20 */
+
+.charsheet * {
+  font-family: 'Calibri', 'Trebuchet MS', sans-serif;
+}
+
+.charsheet h3{
+  text-align: center;
+}
+
+
+.charsheet label{
+  color: #FFF;
+  margin:  5px;
+  padding: 5px 0 0 0;
+}
+
+.charsheet input[type="text"], input[type="number"]{
+  margin: 2px 4px;
+}
+
+.charsheet textarea {
+  width: 95%;
+  height: 85%;
+}
+
+/*------------- Section-specific CSS -------------*/
+
+.headerleft {
+  grid-area: headerleft;
+  background-image: url(https://i.imgur.com/4We0imM.png);
+  color: #FFF;
+  border-style: solid;
+  border-color: black;
+}
+
+
+.headerright {
+    grid-area: headerright;
+    background-image: url(https://i.imgur.com/NtSwE1P.png);
+    color: #FFF;
+    border-style: solid;
+    border-color: black;
+  }
+
+.headerright label {
+    text-align: center;
+    align-content: center;
+    color: #FFF;
+    font-family: 'Calibri', 'Trebuchet MS', sans-serif;
+    font-size: smaller;
+  }
+
+.headerright input {
+  text-align: center ;
+}
+
+.headerleft span {
+    text-align: left;
+    align-content: left;
+    color: #FFF;
+    font-family: 'Calibri', 'Trebuchet MS', sans-serif;
+    font-size: smaller;
+  }
+
+.headerright input {
+    align-content: right;
+    justify-content: right;
+    text-align:left ;
+  } 
+
+.levelinfo {
+    align-content: center;
+    font-size: smaller;
+    text-align: center;
+    justify-content: end;
+
+  }
+
+  .levelinfo span {
+    align-content: right;
+    font-size: smaller;
+    text-align: right;
+    justify-content: end;
+
+  }
+
+.levelinfo input {
+    align-content: right;
+    text-align:left ;
+    font-size: small;
+    justify-content: end;
+  }
+
+.common {
+  grid-area: common;
+  background-image: url(https://i.imgur.com/aq1F5fN.png) ;
+  color: #FFF;
+  flex-direction: column;
+  border-style: solid;
+  border-color: black;
+  align-items: center;
+  align-content: center;
+  justify-items: center;
+  }
+
+.common label {
+font-size: small;
+}
+
+.common h3 {
+  color: #FFF;
+  }
+
+.abilities {
+    color: #FFF;
+    
+}
+
+.abilities input {
+    color: #000000;
+}
+
+.common label {
+    text-align: center;
+    align-content: center;
+}
+
+.common input {
+    justify-items: center;
+    align-items: center;
+    text-align: center;
+    width: 250px;
+}
+
+.common span {
+    text-align: center;
+    align-content: center;
+    align-items: center;
+}
+
+.hpline {
+    align-content: center;
+    text-align: center;
+
+  }
+
+.hpline span {
+    align-content: center;
+    text-align: center;
+
+  }
+
+.hpline input {
+    align-content: center;
+    justify-content: center;
+  }
+
+.skill {
+    grid-area: skill;
+    background-image: url(https://i.imgur.com/7z6TFBe.png) ;
+      border-style: solid;
+      border-color: black;
+      
+  }
+.skill label {
+    font-size: smaller;
+}
+
+.abilities label {
+font-size: medium;
+}
+.abilities span {
+  font-size: x-small ;
+}
+
+.skill h3 {
+    color: white;
+}
+
+.skill select {
+    width: 70px;
+    }
+
+.skill input {
+        width: 200px;
+        color: black;
+        }
+    
+.weapon1-dmg span{
+    align-items: left;
+    text-align: left;
+    font-size: smaller;
+    color: #FFF;
+}
+
+.weapon2-dmg span{
+    align-items: left;
+    text-align: left;
+    font-size: smaller;
+    color: #FFF;
+}
+
+.power {
+  grid-area: pocket;
+  background-image: url(https://i.imgur.com/7z6TFBe.png) ;
+  color: #FFF;
+  border-style: solid;
+  border-color: black;
+}
+
+.power h3 {
+color: white;
+}
+
+.power input {
+
+width: 95%;
+
+}
+
+.power .repcontainer[data-groupname="repeating_pocket"]{
+  padding-bottom: 0.2em;
+}
+
+.power .repcontainer[data-groupname="repeating_pocket"] .repitem{
+  margin: 4px 0px;
+}
+
+.apparel {
+    grid-area: apparel;
+    background-image: url(https://i.imgur.com/5PMW0xK.png) ;
+    color: #FFF;
+    border-style: solid;
+    border-color: black;
+  }
+
+.apparel h3 {
+  color: white;
+}
+
+  
+.apparel .repcontainer[data-groupname="repeating_pocket"]{
+    padding-bottom: 0.2em;
+  }
+  
+  .apparel .repcontainer[data-groupname="repeating_pocket"] .repitem{
+    margin: 4px 0px;
+  }
+
+.other_apparel input {
+width: 95%;
+}
+
+.inv {
+  grid-area: equipment ;
+  background-image: url(https://i.imgur.com/OaVOPPL.png) ;
+  color: white;
+  align-items: center;
+  text-align: center;
+  border-style: solid;
+  border-color: black;
+}
+
+.inv h3{
+    color: white;
+  }
+
+  .tns {
+    grid-area: tns ;
+    background-image: url(https://i.imgur.com/rqBSwsU.png) ;
+    color: white;
+    align-items: center;
+    text-align: center;
+    border-style: solid;
+    border-color: black;
+    justify-content: center;
+  }
+  
+.tns h3{
+      color: white;
+    }
+
+.tns textarea {
+      width: 70%;
+    }
+
+
+.cont1 {
+    grid-area: container1 ;
+    background-image: url(https://i.imgur.com/aZo2iOh.png) ;
+    color: white;
+    align-items: center;
+    text-align: center;
+    border-style: solid;
+    border-color: black;
+  }
+  
+  .cont1 h3{
+      color: white;
+    }
+
+.cont2 {
+        grid-area: container2 ;
+        background-image: url(https://i.imgur.com/p798zY9.png) ;
+        color: white;
+        align-items: center;
+        text-align: center;
+        border-style: solid;
+        border-color: black;
+      }
+      
+.cont2 h3{
+          color: white;
+        }
+
+
+.stash {
+            grid-area: stash ;
+            background-image: url(https://i.imgur.com/bh5VnWo.jpeg) ;
+            color: white;
+            align-items: center;
+            text-align: center;
+            border-style: solid;
+            border-color: black;
+        
+          }
+          
+.stash h3{
+              color: white;
+            }
+
+
+.stash textarea{
+height: fit-content;
+        }
+  
+
+.notes {
+                grid-area: notes ;
+                background-image: url(https://i.imgur.com/2f2fSEO.png) ;
+                color: white;
+                align-items: center;
+                text-align: center;
+                border-style: solid;
+                border-color: black;
+              }
+              
+.notes h3{
+                  color: white;
+                }
+    
+
+
+footer {
+  grid-area: footer;
+  background-color: lightgray;
+}
+
+/*------------------------------------*\
+  #ROLL TEMPLATES
+\*------------------------------------*/
+
+.sheet-rolltemplate-rolls {
+  font-family: "Calibri";
+}
+.sheet-rolltemplate-rolls .sheet-container {
+  border: 3px solid black;
+  border-radius: 3px;
+}
+.sheet-rolltemplate-rolls .sheet-header {
+  background-image: url(https://i.imgur.com/4AFNQNi.png) ;
+  color: var(--header-text-color, #FFF);
+  text-align: left;
+  text-transform: capitalize;
+  padding: 5px;
+  border-bottom: 2px solid black;
+}
+.sheet-rolltemplate-rolls .sheet-title,
+.sheet-rolltemplate-rolls .sheet-name {
+  font-size: 1.4em;
+  font-weight: bold;
+}
+.sheet-rolltemplate-rolls .sheet-subtitle {
+  font-size: 1em;
+}
+.sheet-rolltemplate-rolls .sheet-container {
+  --header-bg-color: #a83521;
+  --header-text-color: #FFF;
+}
+
+.sheet-rolltemplate-rolls .sheet-content {
+  display: grid;
+  background: #FFF;
+  grid-template-columns: auto auto;
+  line-height: 1.4em;
+}
+.sheet-rolltemplate-rolls .sheet-content > div {
+  padding: 5px;
+}
+.sheet-rolltemplate-rolls .sheet-content .sheet-key {
+  font-weight: bold;
+  padding-right: 10px;
+  text-align: right;
+}
+.sheet-rolltemplate-rolls .sheet-content :nth-child(4n+3),
+.sheet-rolltemplate-rolls .sheet-content :nth-child(4n) {
+  background: #EEE;
+}
